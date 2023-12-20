@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  Alert,
-} from "react-native";
+import { SafeAreaView, ScrollView, View, Text, TouchableOpacity, Image, Alert } from "react-native";
 import { colors } from "../config/theme";
 import { ButtonGroup } from "@rneui/themed";
 import InputField from "../components/InputField";
@@ -35,8 +27,7 @@ const RegisterScreen = ({ navigation }) => {
 
   const handleImage = async () => {
     if (Constants.platform.ios) {
-      const { status } =
-        await ImagePicker.requestMediaLibraryPermissionsAsync();
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (status !== "granted") {
         alert("Sorry, we need camera roll permissions to make this work!");
         return;
@@ -87,10 +78,7 @@ const RegisterScreen = ({ navigation }) => {
         justifyContent: "center",
       }}
     >
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={{ paddingHorizontal: 25, marginTop: 50 }}
-      >
+      <ScrollView showsVerticalScrollIndicator={false} style={{ paddingHorizontal: 25, marginTop: 50 }}>
         <View style={{ alignItems: "center", marginTop: 15 }}>
           <Image
             source={require("../assets/fintella-white.png")}
@@ -128,28 +116,12 @@ const RegisterScreen = ({ navigation }) => {
 
         <InputField
           label={selectedIndex === 1 ? "Vendor name" : "Full Name"}
-          icon={
-            <Ionicons
-              name="person-outline"
-              size={20}
-              color="#666"
-              style={{ marginRight: 5, marginTop: 10 }}
-              onChangeText={(text) => setName(text)}
-              value={name}
-            />
-          }
+          icon={<Ionicons name="person-outline" size={20} color="#666" style={{ marginRight: 5, marginTop: 10 }} onChangeText={(text) => setName(text)} value={name} />}
         />
 
         <InputField
           label={"Phone number"}
-          icon={
-            <MaterialIcons
-              name="phone-iphone"
-              size={20}
-              color="#666"
-              style={{ marginRight: 5 }}
-            />
-          }
+          icon={<MaterialIcons name="phone-iphone" size={20} color="#666" style={{ marginRight: 5 }} />}
           keyboardType="tel"
           onChangeText={(text) => setPhone(text)}
           value={phone}
@@ -157,14 +129,7 @@ const RegisterScreen = ({ navigation }) => {
 
         <InputField
           label={"Address"}
-          icon={
-            <MaterialIcons
-              name="address"
-              size={20}
-              color="#666"
-              style={{ marginRight: 5 }}
-            />
-          }
+          icon={<MaterialIcons name="address" size={20} color="#666" style={{ marginRight: 5 }} />}
           keyboardType="tel"
           onChangeText={(text) => setAddress(text)}
           value={address}
@@ -172,29 +137,14 @@ const RegisterScreen = ({ navigation }) => {
 
         <InputField
           label={"Password"}
-          icon={
-            <Ionicons
-              name="ios-lock-closed-outline"
-              size={20}
-              color="#666"
-              style={{ marginRight: 5 }}
-              onChangeText={(text) => setPassword(text)}
-            />
-          }
+          icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#666" style={{ marginRight: 5 }} onChangeText={(text) => setPassword(text)} />}
           inputType="password"
           value={password}
         />
 
         <InputField
           label={"Confirm Password"}
-          icon={
-            <Ionicons
-              name="ios-lock-closed-outline"
-              size={20}
-              color="#666"
-              style={{ marginRight: 5 }}
-            />
-          }
+          icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#666" style={{ marginRight: 5 }} />}
           inputType="password"
           onChangeText={(text) => setConfirmPassword(text)}
           value={confirmPassword}
@@ -203,27 +153,11 @@ const RegisterScreen = ({ navigation }) => {
           <>
             <InputField
               label={"Agent Name"}
-              icon={
-                <Ionicons
-                  name="person-outline"
-                  size={20}
-                  color="#666"
-                  style={{ marginRight: 5, marginTop: 10 }}
-                  onChangeText={(text) => setAgentName(text)}
-                  value={agentName}
-                />
-              }
+              icon={<Ionicons name="person-outline" size={20} color="#666" style={{ marginRight: 5, marginTop: 10 }} onChangeText={(text) => setAgentName(text)} value={agentName} />}
             />
             <InputField
               label={"Agent Phone number"}
-              icon={
-                <MaterialIcons
-                  name="phone-iphone"
-                  size={20}
-                  color="#666"
-                  style={{ marginRight: 5 }}
-                />
-              }
+              icon={<MaterialIcons name="phone-iphone" size={20} color="#666" style={{ marginRight: 5 }} />}
               keyboardType="tel"
               onChangeText={(text) => setAgentPhone(text)}
               value={agentPhone}
@@ -231,10 +165,7 @@ const RegisterScreen = ({ navigation }) => {
 
             <TouchableOpacity onPress={handleImage}>
               {logo ? (
-                <Image
-                  source={{ uri: logo }}
-                  style={{ width: 100, height: 100 }}
-                />
+                <Image source={{ uri: logo }} style={{ width: 100, height: 100 }} />
               ) : (
                 <View
                   style={{
@@ -250,25 +181,20 @@ const RegisterScreen = ({ navigation }) => {
               )}
             </TouchableOpacity>
 
-
             <InputField
               label={"Agent Password"}
-              icon={
-                <Ionicons
-                  name="ios-lock-closed-outline"
-                  size={20}
-                  color="#666"
-                  style={{ marginRight: 5 }}
-                  onChangeText={(text) => setAgentPassword(text)}
-                  value={agentPassword}
-                />
-              }
+              icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#666" style={{ marginRight: 5 }} onChangeText={(text) => setAgentPassword(text)} value={agentPassword} />}
               inputType="password"
             />
           </>
         )}
 
-        <CustomButton label={"Register"} onPress={() => {}} />
+        <CustomButton
+          label={"Register"}
+          onPress={() => {
+            navigation.navigate("AppHome");
+          }}
+        />
         <Text
           style={{
             textAlign: "center",

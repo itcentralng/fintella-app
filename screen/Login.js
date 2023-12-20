@@ -1,14 +1,7 @@
 import React, { useContext, useState } from "react";
 import { colors } from "../config/theme";
 import { ThemeContext } from "../context/ThemeContext";
-import {
-  SafeAreaView,
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  Alert,
-} from "react-native";
+import { SafeAreaView, View, Text, TouchableOpacity, Image, Alert } from "react-native";
 
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
@@ -31,18 +24,18 @@ const LoginScreen = ({ navigation }) => {
     navigation.navigate("AppHome");
   };
   const _onLoginPressed = () => {
-    setLoginLoading(true);
-    // navigation.navigate("AppHome");
-    if (phone === "" && password === "") {
-      Alert.alert("Error", "Please fill all the fields");
-    } else {
-      const error = () => setLoginLoading(false);
-      let form = {
-        phone,
-        password,
-      };
-      dispatch(login(form, goHome, error));
-    }
+    setLoginLoading(false);
+    navigation.navigate("AppHome");
+    // if (phone === "" && password === "") {
+    //   Alert.alert("Error", "Please fill all the fields");
+    // } else {
+    //   const error = () => setLoginLoading(false);
+    //   let form = {
+    //     phone,
+    //     password,
+    //   };
+    //   dispatch(login(form, goHome, error));
+    // }
   };
   return (
     <SafeAreaView
@@ -53,9 +46,7 @@ const LoginScreen = ({ navigation }) => {
       }}
     >
       <View style={{ paddingHorizontal: 25 }}>
-        <Text style={{ color: "white" }}>
-          {/* {JSON.stringify({ phone, password })} */}
-        </Text>
+        <Text style={{ color: "white" }}>{/* {JSON.stringify({ phone, password })} */}</Text>
         <View style={{ alignItems: "center" }}>
           <Image
             source={require("../assets/fintella-white.png")}
@@ -80,14 +71,7 @@ const LoginScreen = ({ navigation }) => {
         <InputField
           selectionColor={activeColors.tint}
           label={"Phone Number"}
-          icon={
-            <MaterialIcons
-              name="phone-iphone"
-              size={20}
-              color="#666"
-              style={{ marginRight: 5 }}
-            />
-          }
+          icon={<MaterialIcons name="phone-iphone" size={20} color="#666" style={{ marginRight: 5 }} />}
           onChangeText={(text) => setPhone(text)}
           value={phone}
           keyboardType="telephone"
@@ -95,14 +79,7 @@ const LoginScreen = ({ navigation }) => {
 
         <InputField
           label={"Password"}
-          icon={
-            <Ionicons
-              name="ios-lock-closed-outline"
-              size={20}
-              color="#666"
-              style={{ marginRight: 5 }}
-            />
-          }
+          icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#666" style={{ marginRight: 5 }} />}
           inputType="password"
           fieldButtonLabel={"Forgot?"}
           onChangeText={(text) => setPassword(text)}
@@ -110,11 +87,7 @@ const LoginScreen = ({ navigation }) => {
           fieldButtonFunction={() => {}}
         />
 
-        <CustomButton
-          label={"Login"}
-          onPress={_onLoginPressed}
-          loading={loginLoading}
-        />
+        <CustomButton label={"Login"} onPress={_onLoginPressed} loading={loginLoading} />
 
         <Text
           style={{
@@ -177,10 +150,7 @@ const LoginScreen = ({ navigation }) => {
         >
           <Text style={{ color: activeColors.tint }}>New to the app? </Text>
           <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-            <Text style={{ color: activeColors.accent, fontWeight: "700" }}>
-              {" "}
-              Register
-            </Text>
+            <Text style={{ color: activeColors.accent, fontWeight: "700" }}> Register</Text>
           </TouchableOpacity>
         </View>
       </View>

@@ -1,4 +1,4 @@
-import { Appearance } from "react-native";
+   import { Appearance } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import AppNavigation from "./navigation/AppNavigation";
 import { Provider } from "react-redux";
