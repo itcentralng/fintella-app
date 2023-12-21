@@ -1,2 +1,1 @@
-
-export const api_url = "https://fintella.itcentral.ng";
+export const api_url = "http://127.0.0.1:5552";

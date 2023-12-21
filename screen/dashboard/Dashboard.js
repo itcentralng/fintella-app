@@ -11,7 +11,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 
 const Dashboard = ({ navigation }) => {
-    const user = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth.user);
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -19,9 +19,7 @@ const Dashboard = ({ navigation }) => {
           <Text style={[styles.balanceLabel, { color: "#252525" }]}>
             Welcome,{" "}
           </Text>
-          <Text style={styles.username}>
-            {user?.name}
-          </Text>
+          <Text style={styles.username}>{user?.name}</Text>
         </View>
         <Image
           source={{ uri: "https://randomuser.me/api/portraits/men/1.jpg" }}
@@ -109,7 +107,7 @@ const Dashboard = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",

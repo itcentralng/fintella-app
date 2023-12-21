@@ -20,6 +20,7 @@ const CreateItem = () => {
 
   const handleSubmit = () => {
     // Submit items array to API
+    console.log("Submitted");
   };
 
   const total = items.reduce(
@@ -70,7 +71,9 @@ const CreateItem = () => {
           <Text style={styles.itemText}>{item.itemName}</Text>
           <Text style={styles.itemText}>{formatNumber(item.price)}</Text>
           <Text style={styles.itemText}>{item.quantity}</Text>
-          <Text style={styles.itemText}>{formatNumber(item.quantity * item.price)}</Text>
+          <Text style={styles.itemText}>
+            {formatNumber(item.quantity * item.price)}
+          </Text>
         </View>
       ))}
 

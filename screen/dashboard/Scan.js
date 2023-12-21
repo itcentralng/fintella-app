@@ -4,12 +4,14 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import CustomButton from "../../components/CustomButton";
 import { formatNumber } from "../helpers";
 import { _fetchApi } from "../redux/actions/api";
+import styles from "./Dashboard";
 
 export default function Scan() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [scanResult, setScanResult] = useState("");
   const [storeData, setStoreData] = useState([]);
+  const [vendor, setVendor] = useState("");
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
@@ -19,12 +21,25 @@ export default function Scan() {
     );
   };
 
-  if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>;
-  }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
+  useEffect(() => {
+    (async () => {
+      const { status } = await BarCodeScanner.requestPermissionsAsync();
+      setHasPermission(status === "granted");
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (scanned && hasPermission) {
+      getData();
+    }
+  }, [scanned, hasPermission]);
+
+  // if (hasPermission === null) {
+  //   return <Text>Requesting for camera permission</Text>;
+  // }
+  // if (hasPermission === false) {
+  //   return <Text>No access to camera</Text>;
+  // }
   const getData = () => {
     _fetchApi(
       `order/${scanResult}`,
@@ -37,16 +52,22 @@ export default function Scan() {
     );
   };
 
-  useEffect(() => {
-    getData();
-  });
+  // useEffect(() => {
+  //   getData();
+  // });
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === "granted");
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const { status } = await BarCodeScanner.requestPermissionsAsync();
+  //     setHasPermission(status === "granted");
+  //   })();
+  // }, []);
+
+  const handleSubmit = () => {
+    // Customize this logic based on what you want to do when the "Save" button is pressed
+    console.log("Save button pressed!");
+    // Example: Send data to the server, update database, etc.
+  };
 
   const total = storeData.reduce(
     (acc, item) => acc + parseFloat(item.amount) * parseFloat(item.unit),
