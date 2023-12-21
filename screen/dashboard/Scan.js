@@ -18,9 +18,7 @@ export default function Scan() {
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     setScanResult(data);
-    console.log(
-      `Bar code with type ${type} and data ${data} has been scanned!`
-    );
+    console.log(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
 
   useEffect(() => {
@@ -55,31 +53,32 @@ export default function Scan() {
   };
 
   const handleSubmit = async () => {
-    // Customize this logic based on what you want to do when the "Save" button is pressed
     console.log("Send button pressed!");
     try {
-      const response = await axios.post("http://127.0.0.1:5552/buyer_message", {
-        method: "POST",
-        "content-type": "Application/json",
-        body: JSON.stringify({
+      const response = await axios.post(
+        "https://ff48-197-210-53-85.ngrok-free.app/buyer_message",
+        {
           message: "DEBIT: NGN500 was sent to Sidi&Sons supermarket.",
           recipient: "+2348160606060",
           sender: "22881",
-        }),
-      });
+        },
+        {
+          headers: {
+            "Content-Type": "application/json", // Proper content type header
+          },
+        }
+      );
+
+      // Check response status or content if needed
 
       Alert.alert("Message Sent", "The message was sent successfully.");
     } catch (error) {
       console.log(error);
-      // Alert.alert("Error", "Failed to send the message. Please try again.");
-      Alert.alert(error);
+      Alert.alert("Error", "Failed to send the message. Please try again.");
     }
   };
 
-  const total = storeData.reduce(
-    (acc, item) => acc + parseFloat(item.amount) * parseFloat(item.unit),
-    0
-  );
+  const total = storeData.reduce((acc, item) => acc + parseFloat(item.amount) * parseFloat(item.unit), 0);
   return (
     <View
       style={{
@@ -91,10 +90,7 @@ export default function Scan() {
         borderRadius: 10,
       }}
     >
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={{ height: 300, width: "95%" }}
-      />
+      <BarCodeScanner onBarCodeScanned={scanned ? undefined : handleBarCodeScanned} style={{ height: 300, width: "95%" }} />
 
       {scanned && (
         <>
@@ -107,9 +103,7 @@ export default function Scan() {
             <Text style={styles.cardTitle}>Total: ₦{formatNumber(total)}</Text>
           </View>
           <View style={styles.itemContainer}>
-            <Text style={[styles.itemText, { fontWeight: "600" }]}>
-              Item Name
-            </Text>
+            <Text style={[styles.itemText, { fontWeight: "600" }]}>Item Name</Text>
             <Text style={[styles.itemText, { fontWeight: "600" }]}>Price</Text>
             <Text style={[styles.itemText, { fontWeight: "600" }]}>Qty</Text>
             <Text style={[styles.itemText, { fontWeight: "600" }]}>Total</Text>
@@ -119,9 +113,7 @@ export default function Scan() {
               <Text style={styles.itemText}>{item.name}</Text>
               <Text style={styles.itemText}>{formatNumber(item.amount)}</Text>
               <Text style={styles.itemText}>{item.unit}</Text>
-              <Text style={styles.itemText}>
-                {formatNumber(item.unit * item.amount)}
-              </Text>
+              <Text style={styles.itemText}>{formatNumber(item.unit * item.amount)}</Text>
             </View>
           ))}
 
