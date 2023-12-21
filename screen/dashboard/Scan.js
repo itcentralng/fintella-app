@@ -65,7 +65,7 @@ export default function Scan() {
 
   const handleSubmit = () => {
     // Customize this logic based on what you want to do when the "Save" button is pressed
-    console.log("Save button pressed!");
+    console.log("Send button pressed!");
     // Example: Send data to the server, update database, etc.
   };
 
@@ -118,7 +118,7 @@ export default function Scan() {
             </View>
           ))}
 
-          <CustomButton label="Save" onPress={handleSubmit} />
+          <CustomButton label="Send" onPress={handleSubmit} />
         </>
       )}
     </View>

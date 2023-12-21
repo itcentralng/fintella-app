@@ -34,7 +34,7 @@ const Dashboard = ({ navigation }) => {
         </View>
         <View style={[styles.balanceItem, styles.flex, { marginTop: 7 }]}>
           <View>
-            <Text style={styles.balanceLabel}>Card Balance</Text>
+            <Text style={styles.balanceLabel}>Wallet Balance</Text>
             <Text style={styles.balanceAmount}>₦5,000.00</Text>
           </View>
           <View>
