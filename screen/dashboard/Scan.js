@@ -5,6 +5,7 @@ import CustomButton from "../../components/CustomButton";
 import { formatNumber } from "../helpers";
 import { _fetchApi } from "../redux/actions/api";
 import styles from "./Dashboard";
+import { SmsDetails } from "../../components/sendMessage";
 
 export default function Scan() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -66,6 +67,8 @@ export default function Scan() {
   const handleSubmit = () => {
     // Customize this logic based on what you want to do when the "Save" button is pressed
     console.log("Send button pressed!");
+    // SmsDetails();
+
     // Example: Send data to the server, update database, etc.
   };
 
