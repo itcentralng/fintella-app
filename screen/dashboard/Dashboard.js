@@ -47,7 +47,10 @@ const Dashboard = ({ navigation }) => {
       </View>
 
       <View style={[styles.flex, { marginTop: 7 }]}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Scan")}
+        >
           <AntDesign name="scan1" size={24} color="black" />
         </TouchableOpacity>
         <TouchableOpacity

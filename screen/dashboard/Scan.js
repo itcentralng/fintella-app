@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import CustomButton from "../../components/CustomButton";
 import { formatNumber } from "../helpers";
 import { _fetchApi } from "../redux/actions/api";
 import styles from "./Dashboard";
 import { SmsDetails } from "../../components/sendMessage";
+import axios from "axios";
 
 export default function Scan() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -53,23 +54,26 @@ export default function Scan() {
     );
   };
 
-  // useEffect(() => {
-  //   getData();
-  // });
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const { status } = await BarCodeScanner.requestPermissionsAsync();
-  //     setHasPermission(status === "granted");
-  //   })();
-  // }, []);
-
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Customize this logic based on what you want to do when the "Save" button is pressed
     console.log("Send button pressed!");
-    // SmsDetails();
+    try {
+      const response = await axios.post("http://127.0.0.1:5552/buyer_message", {
+        method: "POST",
+        "content-type": "Application/json",
+        body: JSON.stringify({
+          message: "DEBIT: NGN500 was sent to Sidi&Sons supermarket.",
+          recipient: "+2348160606060",
+          sender: "22881",
+        }),
+      });
 
-    // Example: Send data to the server, update database, etc.
+      Alert.alert("Message Sent", "The message was sent successfully.");
+    } catch (error) {
+      console.log(error);
+      // Alert.alert("Error", "Failed to send the message. Please try again.");
+      Alert.alert(error);
+    }
   };
 
   const total = storeData.reduce(

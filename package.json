@@ -16,6 +16,7 @@
     "@react-navigation/native-stack": "^6.9.16",
     "@rneui/base": "^4.0.0-rc.7",
     "@rneui/themed": "^4.0.0-rc.8",
+    "axios": "^1.6.2",
     "dotenv": "^16.3.1",
     "expo": "~49.0.15",
     "expo-barcode-scanner": "^12.7.0",
